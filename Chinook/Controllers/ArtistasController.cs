@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Chinook.Data;
 using Chinook.Models;
+using X.PagedList.Mvc.Core;
+using X.PagedList;
 
 namespace Chinook.Controllers
 {
@@ -20,9 +22,17 @@ namespace Chinook.Controllers
         }
 
         // GET: Artistas
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             return View(await _context.Artista.ToListAsync());
+        }*/
+
+        public ViewResult Index(int? page)
+        {
+            var pageNumber = page ?? 1;
+            var pageSize = 5; //Show 10 rows every time
+            var brands = _context.Artista.ToPagedList(pageNumber, pageSize);
+            return View(brands);
         }
 
         // GET: Artistas/Details/5

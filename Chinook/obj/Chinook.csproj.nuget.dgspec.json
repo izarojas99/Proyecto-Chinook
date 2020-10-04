@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HPPC\\source\\repos\\Chinook\\Chinook\\Chinook.csproj": {}
+    "C:\\Users\\DELL1\\Source\\Repos\\Chinook\\Chinook\\Chinook.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HPPC\\source\\repos\\Chinook\\Chinook\\Chinook.csproj": {
+    "C:\\Users\\DELL1\\Source\\Repos\\Chinook\\Chinook\\Chinook.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HPPC\\source\\repos\\Chinook\\Chinook\\Chinook.csproj",
+        "projectUniqueName": "C:\\Users\\DELL1\\Source\\Repos\\Chinook\\Chinook\\Chinook.csproj",
         "projectName": "Chinook",
-        "projectPath": "C:\\Users\\HPPC\\source\\repos\\Chinook\\Chinook\\Chinook.csproj",
-        "packagesPath": "C:\\Users\\HPPC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HPPC\\source\\repos\\Chinook\\Chinook\\obj\\",
+        "projectPath": "C:\\Users\\DELL1\\Source\\Repos\\Chinook\\Chinook\\Chinook.csproj",
+        "packagesPath": "C:\\Users\\DELL1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL1\\Source\\Repos\\Chinook\\Chinook\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HPPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -59,6 +59,14 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "PagedList": {
+              "target": "Package",
+              "version": "[1.17.0, )"
+            },
+            "X.PagedList.Mvc.Core": {
+              "target": "Package",
+              "version": "[8.0.7, )"
             }
           },
           "imports": [

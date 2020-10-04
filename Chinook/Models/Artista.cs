@@ -12,6 +12,9 @@ namespace Chinook.Models
         //Referencia a relacion Album
         public ICollection<Album> AlbumLista { set; get; }
 
-
+        internal static object ToPagedList(int pageNumber, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

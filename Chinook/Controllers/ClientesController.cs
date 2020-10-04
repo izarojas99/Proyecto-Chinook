@@ -22,7 +22,8 @@ namespace Chinook.Controllers
         // GET: Clientes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cliente.ToListAsync());
+            var chinookContext = _context.Cliente.Include(c => c.Empleado);
+            return View(await chinookContext.ToListAsync());
         }
 
         // GET: Clientes/Details/5
@@ -34,6 +35,7 @@ namespace Chinook.Controllers
             }
 
             var cliente = await _context.Cliente
+                .Include(c => c.Empleado)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cliente == null)
             {
@@ -46,6 +48,7 @@ namespace Chinook.Controllers
         // GET: Clientes/Create
         public IActionResult Create()
         {
+            ViewData["EmpleadoId"] = new SelectList(_context.Empleado, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace Chinook.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellidos,Telefono,Emain,SoporteId")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellidos,Telefono,Email,EmpleadoId")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace Chinook.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["EmpleadoId"] = new SelectList(_context.Empleado, "Id", "Id", cliente.EmpleadoId);
             return View(cliente);
         }
 
@@ -78,6 +82,7 @@ namespace Chinook.Controllers
             {
                 return NotFound();
             }
+            ViewData["EmpleadoId"] = new SelectList(_context.Empleado, "Id", "Id", cliente.EmpleadoId);
             return View(cliente);
         }
 
@@ -86,7 +91,7 @@ namespace Chinook.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellidos,Telefono,Emain,SoporteId")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellidos,Telefono,Email,EmpleadoId")] Cliente cliente)
         {
             if (id != cliente.Id)
             {
@@ -113,6 +118,7 @@ namespace Chinook.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["EmpleadoId"] = new SelectList(_context.Empleado, "Id", "Id", cliente.EmpleadoId);
             return View(cliente);
         }
 
@@ -125,6 +131,7 @@ namespace Chinook.Controllers
             }
 
             var cliente = await _context.Cliente
+                .Include(c => c.Empleado)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cliente == null)
             {

@@ -22,7 +22,8 @@ namespace Chinook.Controllers
         // GET: Albums
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Album.ToListAsync());
+            var chinookContext = _context.Album.Include(a => a.Artista);
+            return View(await chinookContext.ToListAsync());
         }
 
         // GET: Albums/Details/5
@@ -34,6 +35,7 @@ namespace Chinook.Controllers
             }
 
             var album = await _context.Album
+                .Include(a => a.Artista)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (album == null)
             {
@@ -46,6 +48,7 @@ namespace Chinook.Controllers
         // GET: Albums/Create
         public IActionResult Create()
         {
+            ViewData["ArtistaId"] = new SelectList(_context.Artista, "Id", "Id");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace Chinook.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ArtistaId"] = new SelectList(_context.Artista, "Id", "Id", album.ArtistaId);
             return View(album);
         }
 
@@ -78,6 +82,7 @@ namespace Chinook.Controllers
             {
                 return NotFound();
             }
+            ViewData["ArtistaId"] = new SelectList(_context.Artista, "Id", "Id", album.ArtistaId);
             return View(album);
         }
 
@@ -113,6 +118,7 @@ namespace Chinook.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ArtistaId"] = new SelectList(_context.Artista, "Id", "Id", album.ArtistaId);
             return View(album);
         }
 
@@ -125,6 +131,7 @@ namespace Chinook.Controllers
             }
 
             var album = await _context.Album
+                .Include(a => a.Artista)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (album == null)
             {

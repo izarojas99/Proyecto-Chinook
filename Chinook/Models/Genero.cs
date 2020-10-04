@@ -10,7 +10,7 @@ namespace Chinook.Models
         public int Id { set; get; }
         public string Nombre { set; get; }
         // Referencia la relacion con Cancion
-       public Cancion Cancion { set; get; }
+       public ICollection<Cancion> CancionLista { set; get; }
 
     }
 

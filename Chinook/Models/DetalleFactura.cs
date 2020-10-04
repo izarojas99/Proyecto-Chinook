@@ -14,7 +14,7 @@ namespace Chinook.Models
         public int Cantidad { set; get; }
 
         // Relacion a Cancion
-        public ICollection<Cancion> CancionLista { set; get; }
+        public Cancion Cancion { set; get; }
         //Relacion de Factura
         public Factura  Factura { set; get; }
 

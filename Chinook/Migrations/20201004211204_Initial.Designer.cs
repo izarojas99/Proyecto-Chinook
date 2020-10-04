@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Chinook.Migrations
 {
     [DbContext(typeof(ChinookContext))]
-    [Migration("20201004000433_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201004211204_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,15 +31,12 @@ namespace Chinook.Migrations
                     b.Property<int>("ArtistaId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CancionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Titulo")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CancionId");
+                    b.HasIndex("ArtistaId");
 
                     b.ToTable("Album");
                 });
@@ -51,15 +48,10 @@ namespace Chinook.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AlbumId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AlbumId");
 
                     b.ToTable("Artista");
                 });
@@ -74,9 +66,6 @@ namespace Chinook.Migrations
                     b.Property<int>("AlbumId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DetalleFacturaId")
-                        .HasColumnType("int");
-
                     b.Property<int>("GeneroId")
                         .HasColumnType("int");
 
@@ -85,7 +74,9 @@ namespace Chinook.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DetalleFacturaId");
+                    b.HasIndex("AlbumId");
+
+                    b.HasIndex("GeneroId");
 
                     b.ToTable("Cancion");
                 });
@@ -100,24 +91,21 @@ namespace Chinook.Migrations
                     b.Property<string>("Apellidos")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Emain")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FacturaId")
+                    b.Property<int>("EmpleadoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SoporteId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Telefono")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FacturaId");
+                    b.HasIndex("EmpleadoId");
 
                     b.ToTable("Cliente");
                 });
@@ -143,6 +131,8 @@ namespace Chinook.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CancionId");
+
                     b.HasIndex("FacturaId");
 
                     b.ToTable("DetalleFactura");
@@ -161,13 +151,10 @@ namespace Chinook.Migrations
                     b.Property<string>("Cargo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ClienteId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EmpleadoId")
+                    b.Property<int?>("EmpleadoJefeId")
                         .HasColumnType("int");
 
                     b.Property<int>("JefeDirecto")
@@ -181,9 +168,7 @@ namespace Chinook.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("EmpleadoId");
+                    b.HasIndex("EmpleadoJefeId");
 
                     b.ToTable("Empleado");
                 });
@@ -206,6 +191,8 @@ namespace Chinook.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClienteId");
+
                     b.ToTable("Factura");
                 });
 
@@ -216,49 +203,55 @@ namespace Chinook.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CancionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CancionId");
 
                     b.ToTable("Genero");
                 });
 
             modelBuilder.Entity("Chinook.Models.Album", b =>
                 {
-                    b.HasOne("Chinook.Models.Cancion", "Cancion")
+                    b.HasOne("Chinook.Models.Artista", "Artista")
                         .WithMany("AlbumLista")
-                        .HasForeignKey("CancionId");
-                });
-
-            modelBuilder.Entity("Chinook.Models.Artista", b =>
-                {
-                    b.HasOne("Chinook.Models.Album", "Album")
-                        .WithMany("ArtistaLista")
-                        .HasForeignKey("AlbumId");
+                        .HasForeignKey("ArtistaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Chinook.Models.Cancion", b =>
                 {
-                    b.HasOne("Chinook.Models.DetalleFactura", "DetalleFactura")
+                    b.HasOne("Chinook.Models.Album", "Album")
                         .WithMany("CancionLista")
-                        .HasForeignKey("DetalleFacturaId");
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Chinook.Models.Genero", "Genero")
+                        .WithMany("CancionLista")
+                        .HasForeignKey("GeneroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Chinook.Models.Cliente", b =>
                 {
-                    b.HasOne("Chinook.Models.Factura", "Factura")
+                    b.HasOne("Chinook.Models.Empleado", "Empleado")
                         .WithMany("ClienteLista")
-                        .HasForeignKey("FacturaId");
+                        .HasForeignKey("EmpleadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Chinook.Models.DetalleFactura", b =>
                 {
+                    b.HasOne("Chinook.Models.Cancion", "Cancion")
+                        .WithMany("DetalleFacturaLista")
+                        .HasForeignKey("CancionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Chinook.Models.Factura", "Factura")
                         .WithMany("DetalleFacturaLista")
                         .HasForeignKey("FacturaId")
@@ -268,20 +261,18 @@ namespace Chinook.Migrations
 
             modelBuilder.Entity("Chinook.Models.Empleado", b =>
                 {
-                    b.HasOne("Chinook.Models.Cliente", "Cliente")
-                        .WithMany("EmpleadosLista")
-                        .HasForeignKey("ClienteId");
-
-                    b.HasOne("Chinook.Models.Empleado", null)
-                        .WithMany("EmpleadoLista")
-                        .HasForeignKey("EmpleadoId");
+                    b.HasOne("Chinook.Models.Empleado", "EmpleadoJefe")
+                        .WithMany()
+                        .HasForeignKey("EmpleadoJefeId");
                 });
 
-            modelBuilder.Entity("Chinook.Models.Genero", b =>
+            modelBuilder.Entity("Chinook.Models.Factura", b =>
                 {
-                    b.HasOne("Chinook.Models.Cancion", "Cancion")
-                        .WithMany("Generolista")
-                        .HasForeignKey("CancionId");
+                    b.HasOne("Chinook.Models.Cliente", "Cliente")
+                        .WithMany("FacturaLista")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

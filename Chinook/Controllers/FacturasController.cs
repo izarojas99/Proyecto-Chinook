@@ -22,7 +22,8 @@ namespace Chinook.Controllers
         // GET: Facturas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Factura.ToListAsync());
+            var chinookContext = _context.Factura.Include(f => f.Cliente);
+            return View(await chinookContext.ToListAsync());
         }
 
         // GET: Facturas/Details/5
@@ -34,6 +35,7 @@ namespace Chinook.Controllers
             }
 
             var factura = await _context.Factura
+                .Include(f => f.Cliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (factura == null)
             {
@@ -46,6 +48,7 @@ namespace Chinook.Controllers
         // GET: Facturas/Create
         public IActionResult Create()
         {
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace Chinook.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id", factura.ClienteId);
             return View(factura);
         }
 
@@ -78,6 +82,7 @@ namespace Chinook.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id", factura.ClienteId);
             return View(factura);
         }
 
@@ -113,6 +118,7 @@ namespace Chinook.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id", factura.ClienteId);
             return View(factura);
         }
 
@@ -125,6 +131,7 @@ namespace Chinook.Controllers
             }
 
             var factura = await _context.Factura
+                .Include(f => f.Cliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (factura == null)
             {

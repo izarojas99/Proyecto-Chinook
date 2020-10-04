@@ -11,14 +11,14 @@ namespace Chinook.Models
         public string Nombre { set; get; }
         public string Apellidos { set; get; }
         public int Telefono { set; get; }
-        public string Emain { set; get; }
-        public int SoporteId { set; get; }
-
+        public string Email { set; get; }
+        public int EmpleadoId { set; get; }
+        
         //Relacion a Empleado
-        public ICollection<Empleado> EmpleadosLista { set; get; }
+        public Empleado Empleado { set; get; }
 
         //Relacion de Factura
-        public Factura Factura { set; get; }
+        public ICollection<Factura> FacturaLista { set; get; }
 
     }
 }

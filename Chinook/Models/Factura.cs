@@ -17,6 +17,6 @@ namespace Chinook.Models
         // Relacion a DetalleFactura
         public ICollection<DetalleFactura> DetalleFacturaLista { set; get; }
         // Relacion a Cliente
-        public ICollection<Cliente> ClienteLista { set; get; }
+        public Cliente Cliente { set; get; }
     }
 }

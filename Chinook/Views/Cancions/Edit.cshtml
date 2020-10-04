@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Editar</h1>
+<h1>Edit</h1>
 
 <h4>Cancion</h4>
 <hr />
@@ -20,23 +20,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="AlbumId" class="control-label"></label>
-                <input asp-for="AlbumId" class="form-control" />
+                <select asp-for="AlbumId" class="form-control" asp-items="ViewBag.AlbumId"></select>
                 <span asp-validation-for="AlbumId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="GeneroId" class="control-label"></label>
-                <input asp-for="GeneroId" class="form-control" />
+                <select asp-for="GeneroId" class="form-control" asp-items="ViewBag.GeneroId"></select>
                 <span asp-validation-for="GeneroId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">regresar a la pagina anterior</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

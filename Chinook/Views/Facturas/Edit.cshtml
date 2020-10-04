@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Editar</h1>
+<h1>Edit</h1>
 
 <h4>Factura</h4>
 <hr />
@@ -14,29 +14,29 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="ClienteId" class="control-label">Cliente</label>
-                <input asp-for="ClienteId" class="form-control" />
+                <label asp-for="ClienteId" class="control-label"></label>
+                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
                 <span asp-validation-for="ClienteId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaFactura" class="control-label">Fecha</label>
+                <label asp-for="FechaFactura" class="control-label"></label>
                 <input asp-for="FechaFactura" class="form-control" />
                 <span asp-validation-for="FechaFactura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Total" class="control-label">Total</label>
+                <label asp-for="Total" class="control-label"></label>
                 <input asp-for="Total" class="form-control" />
                 <span asp-validation-for="Total" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">regresar a la pagina anterior</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

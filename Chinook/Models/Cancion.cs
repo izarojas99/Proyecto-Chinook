@@ -14,13 +14,17 @@ namespace Chinook.Models
 
         //Referencia a Genero
 
-        public ICollection<Genero> Generolista { set; get; }
+        public Genero Genero { set; get; }
 
         // Referencia a Album
-        public ICollection<Album> AlbumLista { set; get; }
+        public Album Album { set; get; }
 
         // Referencia relacion a DetalleFactura
-        public DetalleFactura DetalleFactura { set; get; }
+        public ICollection<DetalleFactura> DetalleFacturaLista { set; get; }
 
+        internal static IQueryable<Cancion> AsNoTracking()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

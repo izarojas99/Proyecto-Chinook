@@ -16,9 +16,9 @@ namespace Chinook.Models
         public string  Email { set; get; } 
 
         //Relacion de Cliente
-        public Cliente Cliente { set; get; }
+        public ICollection<Cliente> ClienteLista { set; get; }
 
         //Relacion a Empleado
-        public ICollection<Empleado> EmpleadoLista { set; get; }
+        public Empleado EmpleadoJefe { set; get; }
     }
 }

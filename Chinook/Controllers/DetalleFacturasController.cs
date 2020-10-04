@@ -22,7 +22,7 @@ namespace Chinook.Controllers
         // GET: DetalleFacturas
         public async Task<IActionResult> Index()
         {
-            var chinookContext = _context.DetalleFactura.Include(d => d.Factura);
+            var chinookContext = _context.DetalleFactura.Include(d => d.Cancion).Include(d => d.Factura);
             return View(await chinookContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace Chinook.Controllers
             }
 
             var detalleFactura = await _context.DetalleFactura
+                .Include(d => d.Cancion)
                 .Include(d => d.Factura)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (detalleFactura == null)
@@ -48,6 +49,7 @@ namespace Chinook.Controllers
         // GET: DetalleFacturas/Create
         public IActionResult Create()
         {
+            ViewData["CancionId"] = new SelectList(_context.Cancion, "Id", "Id");
             ViewData["FacturaId"] = new SelectList(_context.Factura, "Id", "Id");
             return View();
         }
@@ -65,6 +67,7 @@ namespace Chinook.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CancionId"] = new SelectList(_context.Cancion, "Id", "Id", detalleFactura.CancionId);
             ViewData["FacturaId"] = new SelectList(_context.Factura, "Id", "Id", detalleFactura.FacturaId);
             return View(detalleFactura);
         }
@@ -82,6 +85,7 @@ namespace Chinook.Controllers
             {
                 return NotFound();
             }
+            ViewData["CancionId"] = new SelectList(_context.Cancion, "Id", "Id", detalleFactura.CancionId);
             ViewData["FacturaId"] = new SelectList(_context.Factura, "Id", "Id", detalleFactura.FacturaId);
             return View(detalleFactura);
         }
@@ -118,6 +122,7 @@ namespace Chinook.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CancionId"] = new SelectList(_context.Cancion, "Id", "Id", detalleFactura.CancionId);
             ViewData["FacturaId"] = new SelectList(_context.Factura, "Id", "Id", detalleFactura.FacturaId);
             return View(detalleFactura);
         }
@@ -131,6 +136,7 @@ namespace Chinook.Controllers
             }
 
             var detalleFactura = await _context.DetalleFactura
+                .Include(d => d.Cancion)
                 .Include(d => d.Factura)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (detalleFactura == null)

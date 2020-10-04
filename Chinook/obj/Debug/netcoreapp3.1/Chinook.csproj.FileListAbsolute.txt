@@ -182,11 +182,6 @@ C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\C
 C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Cancions\Details.cshtml.g.cs
 C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Cancions\Edit.cshtml.g.cs
 C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Cancions\Index.cshtml.g.cs
-C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Create.cshtml.g.cs
-C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Delete.cshtml.g.cs
-C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Details.cshtml.g.cs
-C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Edit.cshtml.g.cs
-C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Index.cshtml.g.cs
 C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\DetalleFacturas\Create.cshtml.g.cs
 C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\DetalleFacturas\Delete.cshtml.g.cs
 C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\DetalleFacturas\Details.cshtml.g.cs
@@ -207,3 +202,8 @@ C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\G
 C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Generoes\Details.cshtml.g.cs
 C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Generoes\Edit.cshtml.g.cs
 C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Generoes\Index.cshtml.g.cs
+C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Create.cshtml.g.cs
+C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Delete.cshtml.g.cs
+C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Details.cshtml.g.cs
+C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Edit.cshtml.g.cs
+C:\Users\HPPC\source\repos\Chinook\Chinook\obj\Debug\netcoreapp3.1\Razor\Views\Clientes\Index.cshtml.g.cs

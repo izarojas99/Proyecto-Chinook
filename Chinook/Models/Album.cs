@@ -12,10 +12,10 @@ namespace Chinook.Models
         public int ArtistaId { set; get; }
 
         // Referencia la relacion a Cancion
-        public Cancion Cancion { get; set; }
+        public ICollection<Cancion> CancionLista { get; set; }
 
         // Referencia a Artista
-        public ICollection<Artista> ArtistaLista { set; get; }
+        public Artista Artista { set; get; }
 
 
 

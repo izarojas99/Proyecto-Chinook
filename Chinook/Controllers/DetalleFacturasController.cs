@@ -20,12 +20,36 @@ namespace Chinook.Controllers
         }
 
         // GET: DetalleFacturas
-        public async Task<IActionResult> Index()
-        {
-            var chinookContext = _context.DetalleFactura.Include(d => d.Cancion).Include(d => d.Factura);
-            return View(await chinookContext.ToListAsync());
-        }
 
+        public async Task<IActionResult> Index(string sortOrder,
+          string currentFilter,
+          string searchString,
+          int? pageNumber)
+        {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            var DetFactura = from df in _context.DetalleFactura.Include(d => d.Cancion).Include(d => d.Factura)
+            select df;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+               // DetFactura = DetFactura.Where(df => df..Contains(searchString));
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<DetalleFactura>.CreateAsync(DetFactura.AsNoTracking(), pageNumber ?? 1, pageSize));
+        }
         // GET: DetalleFacturas/Details/5
         public async Task<IActionResult> Details(int? id)
         {

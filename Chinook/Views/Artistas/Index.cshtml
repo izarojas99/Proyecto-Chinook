@@ -1,4 +1,4 @@
-﻿@model X.PagedList.IPagedList<Chinook.Models.Artista>
+﻿@model PaginatedList<Chinook.Models.Artista>
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,16 +8,25 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 
-<h1>Index</h1>
-
+<h1>Artista</h1>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Artista: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                Name
+                Nombre
             </th>
             <th></th>
         </tr>
@@ -39,9 +48,22 @@
     </tbody>
 </table>
 
-<br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
 
-<div class="pull-right">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-</div>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

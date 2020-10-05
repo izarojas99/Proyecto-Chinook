@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\DELL1\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\DELL1\\.nuget\\packages"
+      "C:\\Users\\HPPC\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\HPPC\\.nuget\\packages"
     ]
   }
 }

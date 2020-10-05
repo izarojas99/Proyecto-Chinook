@@ -30,6 +30,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "3.1.8",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
           "PagedList": "1.17.0",
+          "X.PagedList.Mvc": "8.0.7",
           "X.PagedList.Mvc.Core": "8.0.7",
           "Microsoft.AspNetCore.Antiforgery.Reference": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "3.1.0.0",
@@ -2647,6 +2648,17 @@
         },
         "compile": {
           "lib/netstandard2.0/X.PagedList.dll": {}
+        }
+      },
+      "X.PagedList.Mvc/8.0.7": {
+        "runtime": {
+          "lib/net48/X.PagedList.Mvc.dll": {
+            "assemblyVersion": "8.0.7.0",
+            "fileVersion": "8.0.7.0"
+          }
+        },
+        "compile": {
+          "lib/net48/X.PagedList.Mvc.dll": {}
         }
       },
       "X.PagedList.Mvc.Core/8.0.7": {
@@ -5737,6 +5749,13 @@
       "sha512": "sha512-eX1Wd5MrIehx9RaFWketo1LrZJDsEcJYx06LBQnaMNZX+CQgUS4A0z7GeaotkSZo6Cau6IGllj26XPpO8Lns4Q==",
       "path": "x.pagedlist/8.0.7",
       "hashPath": "x.pagedlist.8.0.7.nupkg.sha512"
+    },
+    "X.PagedList.Mvc/8.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Svb2MC/Cy5Q6z2Kj7e6hpWJJOs/R0o12oojyxXDsPat7YnrdYU3Tfs5ntk6SLbDLZNH0flPwNFQ1N+l5tQU/eg==",
+      "path": "x.pagedlist.mvc/8.0.7",
+      "hashPath": "x.pagedlist.mvc.8.0.7.nupkg.sha512"
     },
     "X.PagedList.Mvc.Core/8.0.7": {
       "type": "package",

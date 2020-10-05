@@ -20,10 +20,34 @@ namespace Chinook.Controllers
         }
 
         // GET: Clientes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder,
+          string currentFilter,
+          string searchString,
+          int? pageNumber)
         {
-            var chinookContext = _context.Cliente.Include(c => c.Empleado);
-            return View(await chinookContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            var Cliente = from a in _context.Cliente.Include(c => c.Empleado)
+                        select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Cliente = Cliente.Where(a => a.Nombre.Contains(searchString) || a.Apellidos.Contains(searchString));
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<Cliente>.CreateAsync(Cliente.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Clientes/Details/5

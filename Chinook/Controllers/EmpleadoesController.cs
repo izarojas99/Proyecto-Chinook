@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Chinook.Data;
 using Chinook.Models;
 
+
 namespace Chinook.Controllers
 {
     public class EmpleadoesController : Controller
@@ -20,11 +21,35 @@ namespace Chinook.Controllers
         }
 
         // GET: Empleadoes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
         {
-            return View(await _context.Empleado.ToListAsync());
-        }
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = searchString;
 
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            var Empleado = from e in _context.Empleado
+                        select e;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Empleado = Empleado.Where(e => e.Nombres.Contains(searchString)|| e.Apellidos.Contains(searchString));
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<Empleado>.CreateAsync(Empleado.AsNoTracking(), pageNumber ?? 1, pageSize));
+        }
         // GET: Empleadoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {

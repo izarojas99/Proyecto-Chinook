@@ -20,10 +20,35 @@ namespace Chinook.Controllers
         }
 
         // GET: Facturas
-        public async Task<IActionResult> Index()
+       
+        public async Task<IActionResult> Index(string sortOrder,
+           string currentFilter,
+           string searchString,
+           int? pageNumber)
         {
-            var chinookContext = _context.Factura.Include(f => f.Cliente);
-            return View(await chinookContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            var Factura = from f in _context.Factura.Include(f => f.Cliente)
+                        select f;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+               // Factura = Factura.Where(f => f.Cliente.Contains(searchString));
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<Factura>.CreateAsync(Factura.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Facturas/Details/5

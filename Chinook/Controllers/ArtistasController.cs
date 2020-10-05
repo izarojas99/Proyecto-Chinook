@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Chinook.Data;
 using Chinook.Models;
-using X.PagedList.Mvc.Core;
-using X.PagedList;
 
 namespace Chinook.Controllers
 {
@@ -27,12 +25,34 @@ namespace Chinook.Controllers
             return View(await _context.Artista.ToListAsync());
         }*/
 
-        public ViewResult Index(int? page)
+        public async Task<IActionResult> Index(string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
         {
-            var pageNumber = page ?? 1;
-            var pageSize = 5; //Show 10 rows every time
-            var brands = _context.Artista.ToPagedList(pageNumber, pageSize);
-            return View(brands);
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = searchString;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+
+            var Artista = from a in _context.Artista
+                        select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Artista = Artista.Where(a => a.Nombre.Contains(searchString));
+            }
+
+            int pageSize = 5;
+            return View(await PaginatedList<Artista>.CreateAsync(Artista.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Artistas/Details/5

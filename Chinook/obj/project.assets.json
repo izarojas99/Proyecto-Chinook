@@ -3237,6 +3237,15 @@
           "lib/netstandard2.0/X.PagedList.dll": {}
         }
       },
+      "X.PagedList.Mvc/8.0.7": {
+        "type": "package",
+        "compile": {
+          "lib/net48/X.PagedList.Mvc.dll": {}
+        },
+        "runtime": {
+          "lib/net48/X.PagedList.Mvc.dll": {}
+        }
+      },
       "X.PagedList.Mvc.Core/8.0.7": {
         "type": "package",
         "dependencies": {
@@ -9858,6 +9867,18 @@
         "x.pagedlist.nuspec"
       ]
     },
+    "X.PagedList.Mvc/8.0.7": {
+      "sha512": "Svb2MC/Cy5Q6z2Kj7e6hpWJJOs/R0o12oojyxXDsPat7YnrdYU3Tfs5ntk6SLbDLZNH0flPwNFQ1N+l5tQU/eg==",
+      "type": "package",
+      "path": "x.pagedlist.mvc/8.0.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net48/X.PagedList.Mvc.dll",
+        "x.pagedlist.mvc.8.0.7.nupkg.sha512",
+        "x.pagedlist.mvc.nuspec"
+      ]
+    },
     "X.PagedList.Mvc.Core/8.0.7": {
       "sha512": "vzF465/mvbC5446vEMdDlZFcKs+PCl3YtX+5iUZTDWqnjGEa369LqR/l9mk+LFhJMOfkdhvzg/raeN2MyxNeOA==",
       "type": "package",
@@ -9891,23 +9912,24 @@
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.8",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
       "PagedList >= 1.17.0",
+      "X.PagedList.Mvc >= 8.0.7",
       "X.PagedList.Mvc.Core >= 8.0.7"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL1\\.nuget\\packages\\": {}
+    "C:\\Users\\HPPC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL1\\Source\\Repos\\Chinook\\Chinook\\Chinook.csproj",
+      "projectUniqueName": "C:\\Users\\HPPC\\source\\repos\\Proyecto-Chinook\\Chinook\\Chinook.csproj",
       "projectName": "Chinook",
-      "projectPath": "C:\\Users\\DELL1\\Source\\Repos\\Chinook\\Chinook\\Chinook.csproj",
-      "packagesPath": "C:\\Users\\DELL1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL1\\Source\\Repos\\Chinook\\Chinook\\obj\\",
+      "projectPath": "C:\\Users\\HPPC\\source\\repos\\Proyecto-Chinook\\Chinook\\Chinook.csproj",
+      "packagesPath": "C:\\Users\\HPPC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HPPC\\source\\repos\\Proyecto-Chinook\\Chinook\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\DELL1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HPPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9957,6 +9979,10 @@
             "target": "Package",
             "version": "[1.17.0, )"
           },
+          "X.PagedList.Mvc": {
+            "target": "Package",
+            "version": "[8.0.7, )"
+          },
           "X.PagedList.Mvc.Core": {
             "target": "Package",
             "version": "[8.0.7, )"
@@ -9991,6 +10017,16 @@
       "warningLevel": 1,
       "message": "El paquete \"PagedList 1.17.0\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" en lugar de la plataforma de destino del proyecto \".NETCoreApp,Version=v3.1\". Puede que el paquete no sea totalmente compatible con el proyecto.",
       "libraryId": "PagedList",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "El paquete \"X.PagedList.Mvc 8.0.7\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" en lugar de la plataforma de destino del proyecto \".NETCoreApp,Version=v3.1\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "libraryId": "X.PagedList.Mvc",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
       ]

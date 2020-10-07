@@ -44,7 +44,7 @@ namespace Chinook.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-               // Factura = Factura.Where(f => f.Cliente.Contains(searchString));
+                Factura = Factura.Where(f => f.Cliente.Nombre.Contains(searchString));
             }
 
             int pageSize = 5;

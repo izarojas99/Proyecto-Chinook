@@ -39,12 +39,12 @@ namespace Chinook.Controllers
             }
 
 
-            var DetFactura = from df in _context.DetalleFactura.Include(d => d.Cancion).Include(d => d.Factura)
+            var DetFactura = from df in _context.DetalleFactura.Include(df => df.Cancion).Include(df => df.Factura)
             select df;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-               // DetFactura = DetFactura.Where(df => df..Contains(searchString));
+                DetFactura = DetFactura.Where(df => df.Cancion.Nombre.Contains(searchString));
             }
 
             int pageSize = 5;
